@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express') 
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index') // Use this path relative to our cwd to get index and open application
 const authorRouter = require('./routes/authors') // Use this path relative to our cwd to get index and open application
@@ -17,6 +18,7 @@ app.set('views', __dirname + '/views') // Where to store the views?
 app.set('layout', 'layouts/layout') // Every file will be put into this layout file, like a template for all our HTML
 app.use(expressLayouts)
 app.use(express.static('public')) // public files: images, CSS, JS
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { 
