@@ -10,6 +10,8 @@ const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index') // Use this path relative to our cwd to get index and open application
 const authorRouter = require('./routes/authors') // Use this path relative to our cwd to get index and open application
+const bookRouter = require('./routes/books') // Use this path relative to our cwd to get index and open application
+
 
 // Also need a way to get information from this index to run it
 
@@ -30,7 +32,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 // Tell app to use routers, with directories located as input
 app.use('/', indexRouter)
 app.use('/authors', authorRouter)
-
+app.use('/books', bookRouter)
 
 app.listen(process.env.PORT || 3000) // Server sets port, not us
 
